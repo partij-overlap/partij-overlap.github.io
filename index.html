@@ -50,6 +50,7 @@ a{color:#1f5b7a}
 <header>
 <h1>Prototype: overlap in standpunten van de 27 lijsten (Tweede Kamer 2025)</h1>
 <p class="sub">Zes thema's · concrete standpunten gecodeerd uit de verkiezingsprogramma's (DNPP-archief, RUG), elk met letterlijk citaat en paginanummer · drie weergaven naast elkaar. Groepen volgen alleen uit de overlap; er zijn geen vooraf toegekende labels.</p>
+<p class="sub" style="margin-top:6px"><a id="kaartLink" href="kaart.html">Nieuw: bekijk de kaart met gebieden →</a></p>
 </header>
 <div id="themes"><span class="lbl">Thema:</span></div>
 <nav id="tabs">
@@ -170,7 +171,7 @@ document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>showTab(b.dat
 const thBox=document.getElementById('themes');
 for(const t of TH){const b=document.createElement('button');b.textContent=t.label;b.dataset.th=t.id;if(t.id==='alle')b.className='alle';b.onclick=()=>{setTheme(t.id);setHash()};thBox.appendChild(b)}
 function setTheme(id){
- CUR=THI[id]?id:'zorg'; D=THI[CUR]; S=D.statements; SI=Object.fromEntries(S.map(s=>[s.id,s])); computePairs();
+ CUR=THI[id]?id:'zorg'; D=THI[CUR]; {const kl=document.getElementById('kaartLink'); if(kl) kl.href='kaart.html#thema='+CUR;} S=D.statements; SI=Object.fromEntries(S.map(s=>[s.id,s])); computePairs();
  thBox.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.th===CUR));
  const nS=S.length; for(const r of [hMin,nMin]) r.max=nS;
  if(CUR==='alle'){hMin.value=10;nMin.value=10;nThr.value=80}else{hMin.value=3;nMin.value=3;nThr.value=80}
